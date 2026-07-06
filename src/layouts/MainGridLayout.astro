@@ -801,6 +801,73 @@ const hasMultipleImages =
     <div id="banner-dim-container" class="hidden"></div>
 </>
 )}
+<!-- Overlay 模式：首页独立首屏 -->
+{homeTextEnable && (
+	<section
+		id="overlay-landing"
+		class="overlay-landing"
+		aria-label="首页首屏"
+	>
+		<!-- 首屏暗色遮罩；不需要可以删除 -->
+		<div
+			class="overlay-landing__shade"
+			style={`background: rgba(0, 0, 0, ${dimOpacity})`}
+		></div>
+
+		<div class="overlay-landing__content">
+			{backgroundWallpaper.common?.homeText?.title && (
+				<h1
+					class="overlay-landing__title"
+					style={{
+						"--overlay-title-size":
+							backgroundWallpaper.common.homeText.titleSize || "3.8rem",
+					}}
+				>
+					{backgroundWallpaper.common.homeText.title}
+				</h1>
+			)}
+
+			{backgroundWallpaper.common?.homeText?.subtitle && (
+				<div
+					class="overlay-landing__subtitle"
+					style={{
+						fontSize:
+							backgroundWallpaper.common.homeText.subtitleSize || "1.5rem",
+					}}
+				>
+					{backgroundWallpaper.common.homeText.typewriter?.enable ? (
+						<TypewriterText
+							text={backgroundWallpaper.common.homeText.subtitle}
+							speed={
+								backgroundWallpaper.common.homeText.typewriter.speed
+							}
+							deleteSpeed={
+								backgroundWallpaper.common.homeText.typewriter.deleteSpeed
+							}
+							pauseTime={
+								backgroundWallpaper.common.homeText.typewriter.pauseTime
+							}
+						/>
+					) : (
+						randomSubtitle
+					)}
+				</div>
+			)}
+		</div>
+
+		<button
+			type="button"
+			class="overlay-landing__arrow"
+			aria-label="向下滚动查看博客内容"
+			onclick="document.getElementById('main-grid')?.scrollIntoView({ behavior: 'smooth' })"
+		>
+			<Icon
+				is:inline
+				name="material-symbols:keyboard-arrow-down-rounded"
+			/>
+		</button>
+	</section>
+)}
 
 <!-- Main content -->
 <div class={`absolute w-full z-30 pointer-events-none ${mobileNonHomeBannerClass ? 'mobile-main-no-banner' : ''} ${!(isBannerMode && isBackgroundEnabled) ? 'no-banner-layout' : ''}`} style={isFullscreenMode ? 'top: 0;' : `top: ${finalMainPanelTop}`}>

@@ -828,3 +828,165 @@ html[data-wallpaper-mode="fullscreen"] body:not(.wallpaper-initialized) .w-full.
         transition: top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s !important;
     }
 }
+/* ============================================
+ * Overlay 模式：首页独立全屏首屏
+ * ============================================ */
+
+#overlay-landing {
+	display: none;
+}
+
+/* 只在：首页 + 全屏透明模式下显示 */
+html[data-wallpaper-mode="overlay"] body.is-home #overlay-landing {
+	position: absolute;
+	inset: 0 0 auto 0;
+	z-index: 20;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+	height: 100vh;
+	height: 100svh;
+
+	overflow: hidden;
+	pointer-events: none;
+}
+
+/* 首屏遮罩 */
+.overlay-landing__shade {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+}
+
+/* 标题区域 */
+.overlay-landing__content {
+	position: relative;
+	z-index: 1;
+
+	width: min(90%, 70rem);
+	padding: 1.5rem;
+
+	color: white;
+	text-align: center;
+	text-shadow: 0 3px 16px rgb(0 0 0 / 55%);
+
+	animation: overlay-landing-enter 0.8s ease both;
+}
+
+.overlay-landing__title {
+	margin: 0 0 1rem;
+
+	font-size: clamp(
+		2.5rem,
+		7vw,
+		var(--overlay-title-size, 3.8rem)
+	);
+	font-weight: 700;
+	line-height: 1.1;
+}
+
+.overlay-landing__subtitle {
+	color: rgb(255 255 255 / 90%);
+	line-height: 1.5;
+}
+
+/* 下拉箭头 */
+.overlay-landing__arrow {
+	position: absolute;
+	bottom: 3rem;
+	left: 50%;
+	z-index: 2;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0;
+	border: 0;
+
+	color: rgb(255 255 255 / 90%);
+	background: transparent;
+	cursor: pointer;
+	pointer-events: auto;
+
+	transform: translateX(-50%);
+	transition:
+		color 0.2s ease,
+		filter 0.2s ease;
+}
+
+.overlay-landing__arrow svg {
+	width: 4.5rem;
+	height: 4.5rem;
+
+	filter: drop-shadow(0 3px 8px rgb(0 0 0 / 45%));
+	animation: overlay-arrow-bounce 2s ease-in-out infinite;
+}
+
+.overlay-landing__arrow:hover {
+	color: white;
+	filter: brightness(1.15);
+}
+
+/*
+ * Overlay 模式原本正文位于导航栏下方。
+ * 此处额外移动 calc(一屏高度 - 原来的 5.5rem)，
+ * 最终正文正好从第一屏底部开始。
+ */
+html[data-wallpaper-mode="overlay"]
+	body.is-home
+	.absolute.w-full.z-30.pointer-events-none {
+	transform: translateY(calc(100vh - 5.5rem)) !important;
+	transform: translateY(calc(100svh - 5.5rem)) !important;
+}
+
+@keyframes overlay-landing-enter {
+	from {
+		opacity: 0;
+		transform: translateY(1.5rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes overlay-arrow-bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(0.7rem);
+	}
+}
+
+/* 手机端稍微收紧 */
+@media (max-width: 640px) {
+	.overlay-landing__title {
+		font-size: clamp(2.2rem, 11vw, 3.5rem);
+	}
+
+	.overlay-landing__arrow {
+		bottom: 5rem;
+	}
+
+	.overlay-landing__arrow svg {
+		width: 3.8rem;
+		height: 3.8rem;
+	}
+}
+
+/* 尊重系统“减少动画”设置 */
+@media (prefers-reduced-motion: reduce) {
+	.overlay-landing__content,
+	.overlay-landing__arrow svg {
+		animation: none;
+	}
+}
