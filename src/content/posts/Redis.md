@@ -6,7 +6,9 @@ published: 2026-07-06
 # 文章简介
 description: Redis相关知识
 # 文章标签
+tags: [学习]
 # 文章分类
+category: Redis
 # 是否为草稿
 draft: false
 # 是否置顶
