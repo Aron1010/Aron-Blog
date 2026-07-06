@@ -585,13 +585,3 @@ html {
 .pagination-info {
   @apply text-sm text-(--text-secondary) text-center mb-2;
 }
-
-/* 全屏壁纸模式下，让主要内容区域透明 */
-[data-wallpaper-mode="fullscreen"] main > div,
-[data-wallpaper-mode="fullscreen"] aside > div,
-[data-wallpaper-mode="fullscreen"] article,
-[data-wallpaper-mode="fullscreen"] section {
-  background-color: rgba(20, 30, 26, 0.38) !important;
-  backdrop-filter: blur(0px) !important;
-  -webkit-backdrop-filter: blur(0px) !important;
-}
