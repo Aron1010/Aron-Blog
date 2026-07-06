@@ -990,3 +990,70 @@ html[data-wallpaper-mode="overlay"]
 		animation: none;
 	}
 }
+/* ============================================
+ * 文章页自适应宽度
+ * 左侧栏为空时，让正文自动占用空位
+ * ============================================ */
+
+/* 文章页不显示空的左侧栏 */
+#main-grid:has(#post-container) #left-sidebar {
+	display: none !important;
+}
+
+/* 平板宽度：目录尚未显示，正文使用完整宽度 */
+@media (min-width: 768px) and (max-width: 1279px) {
+	#main-grid:has(#post-container) {
+		grid-template-columns: minmax(0, 1fr) !important;
+	}
+
+	/* 正文外层 */
+	#main-grid:has(#post-container) > div:has(> #swup-container) {
+		grid-column: 1 / -1 !important;
+	}
+
+	/* 页脚跟随正文宽度 */
+	#main-grid:has(#post-container) > .footer {
+		grid-column: 1 / -1 !important;
+	}
+}
+
+/* 桌面端：正文 + 右侧文章目录 */
+@media (min-width: 1280px) {
+	#main-grid:has(#post-container) {
+		grid-template-columns: minmax(0, 1fr) 17.5rem !important;
+	}
+
+	/* 正文占据第一列 */
+	#main-grid:has(#post-container) > div:has(> #swup-container) {
+		grid-column: 1 / 2 !important;
+	}
+
+	/* 文章目录移动到第二列 */
+	#main-grid:has(#post-container) #right-sidebar {
+		grid-column: 2 / 3 !important;
+	}
+
+	/* 页脚与正文对齐 */
+	#main-grid:has(#post-container) > .footer {
+		grid-column: 1 / 2 !important;
+	}
+}
+
+/* 如果文章目录不存在，正文自动占满所有列 */
+@media (min-width: 1280px) {
+	#main-grid:has(#post-container):not(:has(#sidebar-toc:not(.hidden))) {
+		grid-template-columns: minmax(0, 1fr) !important;
+	}
+
+	#main-grid:has(#post-container):not(:has(#sidebar-toc:not(.hidden)))
+		> div:has(> #swup-container),
+	#main-grid:has(#post-container):not(:has(#sidebar-toc:not(.hidden)))
+		> .footer {
+		grid-column: 1 / -1 !important;
+	}
+
+	#main-grid:has(#post-container):not(:has(#sidebar-toc:not(.hidden)))
+		#right-sidebar {
+		display: none !important;
+	}
+}
