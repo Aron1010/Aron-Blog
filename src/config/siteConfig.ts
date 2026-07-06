@@ -56,7 +56,7 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		{
 			// 图标文件路径
-			src: "/favicon/favicon.ico",
+			src: "assets/images/IMG_4428.jpg",
 			// 可选，指定主题 'light' | 'dark'
 			// theme: "light",
 			// 可选，图标大小
@@ -80,7 +80,7 @@ export const siteConfig: SiteConfig = {
 		// 导航栏标题
 		title: "Aron",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
-		widthFull: true,
+		widthFull: false,
 		// 导航菜单对齐方式，left：左对齐，center：居中
 		menuAlign: "center",
 		// 导航栏图标和标题是否跟随主题色

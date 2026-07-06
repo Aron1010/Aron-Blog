@@ -586,3 +586,13 @@ html {
   @apply text-sm text-(--text-secondary) text-center mb-2;
 }
 
+/* 全屏壁纸模式下，让内容卡片也透明 */
+[data-wallpaper-mode="fullscreen"] .card-base,
+[data-wallpaper-mode="fullscreen"] .card,
+[data-wallpaper-mode="fullscreen"] .post-card,
+[data-wallpaper-mode="fullscreen"] .sidebar-card,
+[data-wallpaper-mode="fullscreen"] .toc-card {
+  background-color: rgba(20, 30, 26, 0.38) !important;
+  backdrop-filter: blur(0px) !important;
+  -webkit-backdrop-filter: blur(0px) !important;
+}
