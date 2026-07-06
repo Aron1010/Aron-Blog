@@ -14,7 +14,6 @@ pinned: false
 # 是否允许评论
 comments: true
 # 文章密码，不需要加密就留空
-password: 
 ---
 
 # Redis
