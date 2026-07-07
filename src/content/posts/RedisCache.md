@@ -1,14 +1,14 @@
 ---
 # 文章标题
-title: 
+title: RedisCache
 # 文章发布日期
 published: 2026-07-06
 # 文章简介
-description: 
+description: RedisCache
 # 文章标签
-tags: 
+tags: [Redis]
 # 文章分类
-category: 
+category: Redis
 # 是否为草稿
 draft: true
 # 是否置顶
