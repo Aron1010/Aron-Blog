@@ -86,7 +86,7 @@ export const siteConfig: SiteConfig = {
 		// 导航栏图标和标题是否跟随主题色
 		followTheme: true,
 		// 导航栏是否固定在顶部并始终可见
-		stickyNavbar: false,
+		stickyNavbar: true,
 	},
 
 	// 站点开始日期，用于统计运行天数
@@ -109,11 +109,11 @@ export const siteConfig: SiteConfig = {
 		// 相册页面开关
 		gallery: false,
 		// 追番页面开关
-		anime: true,
+		anime: false,
 	},
 
 	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航
-	categoryBar: true,
+	categoryBar: false,
 
 	// 归档页是否折叠非最新年份文章，禁用后默认展开全部年份
 	foldArticle: true,
