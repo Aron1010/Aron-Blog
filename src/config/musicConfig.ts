@@ -11,7 +11,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	showInNavbar: true,
 
 	// 使用方式："meting" 使用 Meting API，"local" 使用本地音乐列表
-	mode: "meting",
+	mode: "local",
 
 	// 默认音量 (0-1)
 	volume: 0.7,
@@ -56,6 +56,13 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				cover: "/assets/music/cover/109951169585655912.webp",
 				lrc: "",
 			},
+			{
+				name: "fell my soul",
+				artist: "寺澤百花",
+				url: "/assets/music/01. feel my soul.flac",
+				cover: "/assets/music/cover/fell my soul.jpg",
+				lrc: "",
+			}
 		],
 	},
 };
