@@ -6,7 +6,7 @@ published: 2026-07-06
 # 文章简介
 description: Redis基础，命令相关介绍
 # 文章标签
-tags: [Redis][Redis命令]
+tags: [Redis,Redis命令]
 # 文章分类
 category: Redis
 # 是否为草稿
