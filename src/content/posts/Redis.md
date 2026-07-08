@@ -1,6 +1,6 @@
 ---
 # 文章标题
-title: Redis
+title: Redis相关介绍和命令
 # 文章发布日期
 published: 2026-07-06
 # 文章简介
