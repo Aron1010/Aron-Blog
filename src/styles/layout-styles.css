@@ -996,9 +996,9 @@ html[data-wallpaper-mode="overlay"]
  * ============================================ */
 
 /* 文章页不显示空的左侧栏 */
-#main-grid:has(#post-container) #left-sidebar {
+/* #main-grid:has(#post-container) #left-sidebar {
 	display: none !important;
-}
+} */
 
 /* 平板宽度：目录尚未显示，正文使用完整宽度 */
 @media (min-width: 768px) and (max-width: 1279px) {
