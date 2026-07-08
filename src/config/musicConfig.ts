@@ -50,20 +50,6 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	local: {
 		playlist: [
 			{
-				name: "使一颗心免于哀伤",
-				artist: "知更鸟 / HOYO-MiX / Chevy",
-				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
-				cover: "/assets/music/cover/109951169585655912.webp",
-				lrc: "",
-			},
-			{
-				name: "fell my soul",
-				artist: "寺澤百花",
-				url: "/assets/music/feel my soul.mp3",
-				cover: "/assets/music/cover/fell my soul.jpg",
-				lrc: "",
-			},
-			{
 				name: "LOVE 2000",
 				artist: "遠野ひかる",
 				url: "/assets/music/LOVE 2000.mp3",
@@ -75,6 +61,13 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				artist: "若山詩音",
 				url: "/assets/music/CRAZY FOR YOU.mp3",
 				cover: "/assets/music/cover/CRAZY FOR YOU.jpg",
+				lrc: "",
+			},
+			{
+				name: "fell my soul",
+				artist: "寺澤百花",
+				url: "/assets/music/feel my soul.mp3",
+				cover: "/assets/music/cover/fell my soul.jpg",
 				lrc: "",
 			},
 			{
