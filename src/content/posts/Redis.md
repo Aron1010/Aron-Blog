@@ -18,7 +18,6 @@ comments: true
 # 文章密码，不需要加密就留空
 ---
 
-# Redis
   
 ## 一 认识 NoSQL  
 **1. SQL与NoSQL对比**
