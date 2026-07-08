@@ -59,8 +59,29 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 			{
 				name: "fell my soul",
 				artist: "寺澤百花",
-				url: "/assets/music/01. feel my soul.flac",
+				url: "/assets/music/feel my soul.mp3",
 				cover: "/assets/music/cover/fell my soul.jpg",
+				lrc: "",
+			},
+			{
+				name: "LOVE 2000",
+				artist: "遠野ひかる",
+				url: "/assets/music/LOVE 2000.mp3",
+				cover: "/assets/music/cover/LOVE 2000.jpg",
+				lrc: "/assets/music/lrc/LOVE 2000.lrc",
+			},
+			{
+				name: "CRAZY FOR YOU",
+				artist: "若山詩音",
+				url: "/assets/music/CRAZY FOR YOU.mp3",
+				cover: "/assets/music/cover/CRAZY FOR YOU.jpg",
+				lrc: "",
+			},
+			{
+				name: "つよがるガール",
+				artist: "ぼっちぼろまる",
+				url: "/assets/music/つよがるガール.mp3",
+				cover: "/assets/music/cover/つよがるガール.jpg",
 				lrc: "",
 			}
 		],
