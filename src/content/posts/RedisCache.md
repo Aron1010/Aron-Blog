@@ -1,6 +1,6 @@
 ---
 title: Redis缓存和更新
-published: 2026-07-06
+published: 2026-07-07
 description: Redis缓存介绍，缓存更新
 tags: [Redis,Redis缓存更新]
 category: Redis

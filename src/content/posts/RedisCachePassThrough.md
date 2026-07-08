@@ -1,6 +1,6 @@
 ---
 title: Redis缓存穿透，雪崩，击穿，工具封装
-published: 2026-07-06
+published: 2026-07-07
 description: Redis缓存穿透、缓存雪崩、缓存击穿与缓存工具封装
 tags: [Redis,Redis缓存穿透,Redis缓存雪崩,Redis缓存击穿,Redis缓存工具封装]
 category: Redis
