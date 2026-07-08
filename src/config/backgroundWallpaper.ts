@@ -121,7 +121,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 				// 桌面端是否启用水波纹动画效果
 				desktop: true,
 				// 移动端是否启用水波纹动画效果
-				mobile: true,
+				mobile: false,
 			},
 			// 是否允许用户通过控制面板切换水波纹动画
 			switchable: true,
@@ -169,11 +169,11 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		// 层级，确保壁纸在背景层
 		zIndex: -1,
 		// 壁纸透明度
-		opacity: 0.8,
+		opacity: 1,
 		// 背景模糊度
-		blur: 10,
+		blur: 0,
 		// 卡片透明度，0-1之间，值越小越透明
-		cardOpacity: 0.5,
+		cardOpacity: 0.65,
 	},
 	// 全屏壁纸模式特有配置
 	fullscreen: {

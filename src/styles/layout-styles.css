@@ -982,6 +982,21 @@ html[data-wallpaper-mode="overlay"]
 		height: 3.8rem;
 	}
 }
+/* 手机端：减弱首页首屏遮罩，避免壁纸变成一整块灰色 */
+@media (max-width: 640px) {
+	html[data-wallpaper-mode="overlay"] body.is-home .overlay-landing__shade {
+		background: rgb(0 0 0 / 0.25) !important;
+	}
+
+	html[data-wallpaper-mode="overlay"] body.is-home #wallpaper-wrapper.wallpaper-overlay {
+		opacity: 1 !important;
+	}
+
+	html[data-wallpaper-mode="overlay"] body.is-home #wallpaper-wrapper.wallpaper-overlay img {
+		filter: none !important;
+		opacity: 1 !important;
+	}
+}
 
 /* 尊重系统“减少动画”设置 */
 @media (prefers-reduced-motion: reduce) {
