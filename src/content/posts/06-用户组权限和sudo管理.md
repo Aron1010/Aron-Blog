@@ -20,7 +20,6 @@ comments: true
 ---
 
 
-# Linux 用户、用户组、权限与 sudo 管理
 
 ## 用户和用户组的关系
 
