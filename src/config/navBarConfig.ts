@@ -16,23 +16,12 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		LinkPresets.Home,
 	];
 
-	// 文章及其子菜单
-	links.push({
-		name: "文章",
-		url: "#",
-		icon: "material-symbols:article",
-		children: [
-			// 归档
-			LinkPresets.Archive,
-
-			// 分类
-			LinkPresets.Categories,
-
-			// 标签
-			LinkPresets.Tags,
-		],
-	});
-
+	// 近期文章
+	links.push(LinkPresets.Archive);
+	// 分类
+	links.push(LinkPresets.Categories);
+	// 标签
+	links.push(LinkPresets.Tags);
 	// 友链
 	links.push(LinkPresets.Friends);
 
@@ -131,7 +120,7 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		icon: "material-symbols:home",
 	},
 	Archive: {
-		name: "归档",
+		name: "近期文章",
 		url: "/archive/",
 		icon: "material-symbols:archive",
 	},
