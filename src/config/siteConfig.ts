@@ -75,7 +75,7 @@ export const siteConfig: SiteConfig = {
 		logo: {
 			type: "image",
 			value: "assets/images/IMG_4428.jpg",
-			alt: "assets/images/IMG_4428.jpg",
+			alt: "Aron",
 		},
 		// 导航栏标题
 		title: "Aron",
