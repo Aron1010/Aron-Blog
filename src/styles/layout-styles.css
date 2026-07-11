@@ -6,6 +6,11 @@ html[data-banner-title-enabled="false"] #wallpaper-wrapper.wallpaper-overlay .ba
     display: none !important;
 }
 
+/* 全屏透明模式的独立首页首屏标题（保留下拉箭头） */
+html[data-banner-title-enabled="false"] #overlay-landing .overlay-landing__content {
+	display: none !important;
+}
+
 /* 注意：不使用 data-banner-title-enabled="true" 强制显示，
    因为横幅标题只应在首页显示，由页面本身的 hidden 类控制 */
 

@@ -80,7 +80,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		homeText: {
 			// 是否启用主页横幅文字
 			enable: true,
-			// 是否允许用户通过控制面板切换横幅标题显示
+			// 是否允许用户通过控制面板切换首页壁纸标题显示（包括全屏透明模式）
 			switchable: true,
 			// 主页横幅主标题
 			title: "I'm Aron",

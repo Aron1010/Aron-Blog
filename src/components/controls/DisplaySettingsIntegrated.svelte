@@ -136,12 +136,16 @@ const isOverlayCardOpacitySwitchable =
 		? overlaySwitchableConfig
 		: (overlaySwitchableConfig.cardOpacity ?? false);
 const hasOverlaySettings =
-	isOverlaySettingsSwitchable &&
-	(isOverlayOpacitySwitchable ||
-		isOverlayBlurSwitchable ||
-		isOverlayCardOpacitySwitchable);
+	isBannerTitleSwitchable ||
+	(isOverlaySettingsSwitchable &&
+		(isOverlayOpacitySwitchable ||
+			isOverlayBlurSwitchable ||
+			isOverlayCardOpacitySwitchable));
 let overlaySettingsIsDefault = $derived(
-	(!isOverlayOpacitySwitchable || overlayOpacity === defaultOverlayOpacity) &&
+	(!isBannerTitleSwitchable ||
+		bannerTitleEnabled === defaultBannerTitleEnabled) &&
+		(!isOverlayOpacitySwitchable ||
+			overlayOpacity === defaultOverlayOpacity) &&
 		(!isOverlayBlurSwitchable || overlayBlur === defaultOverlayBlur) &&
 		(!isOverlayCardOpacitySwitchable ||
 			overlayCardOpacity === defaultOverlayCardOpacity),
@@ -265,6 +269,13 @@ function resetBannerSettings() {
 }
 
 function resetOverlaySettings() {
+	if (
+		isBannerTitleSwitchable &&
+		bannerTitleEnabled !== defaultBannerTitleEnabled
+	) {
+		bannerTitleEnabled = defaultBannerTitleEnabled;
+		setBannerTitleEnabled(defaultBannerTitleEnabled);
+	}
 	if (isOverlayOpacitySwitchable && overlayOpacity !== defaultOverlayOpacity) {
 		overlayOpacity = defaultOverlayOpacity;
 		setOverlayOpacity(defaultOverlayOpacity);
@@ -595,6 +606,24 @@ $effect(() => {
                 </button>
             </div>
             <div class="space-y-2">
+                <!-- Overlay Home Title Switch -->
+                {#if isBannerTitleSwitchable}
+                    <button
+                        class="w-full btn-regular rounded-md py-2 px-3 flex items-center gap-3 text-left active:scale-95 transition-all relative overflow-hidden"
+                        class:bg-(--btn-regular-bg-hover)={bannerTitleEnabled}
+                        onclick={toggleBannerTitleEnabled}
+                    >
+                        <Icon icon="material-symbols:titlecase-rounded" class="text-[1.25rem] shrink-0"></Icon>
+                        <span class="text-sm flex-1">{i18n(I18nKey.wallpaperTitle)}</span>
+                        <div class="w-10 h-5 rounded-full transition-all duration-200 relative"
+                             class:bg-(--primary)={bannerTitleEnabled}
+                             class:bg-(--btn-regular-bg-active)={!bannerTitleEnabled}>
+                            <div class="absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all duration-200"
+                                 class:left-0.5={!bannerTitleEnabled}
+                                 class:left-5={bannerTitleEnabled}></div>
+                        </div>
+                    </button>
+                {/if}
                 {#each overlaySliderItems as item (item.key)}
                     {#if item.enabled}
                         <div class="rounded-md bg-(--btn-regular-bg) p-2">

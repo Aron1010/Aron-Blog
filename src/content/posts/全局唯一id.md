@@ -6,7 +6,7 @@ published: 2026-07-11
 # 文章简介
 description: Redis全局唯一ID
 # 文章标签
-tags: [Redis]
+tags: [Redis，Redis全局唯一id，悲观锁乐观锁，单环境加锁]
 # 文章分类
 category: Redis
 # 是否为草稿
@@ -71,8 +71,7 @@ icr:order:2026:07:10
 
 Redis的INCR命令是原子操作，多线程并发执行时不会生成重复序号。
 
-代码中的计数器实际上是按天递增，因此同一个Key在一天内不能超过`2^32 - 1`。PPT中“每秒支持`2^32`个ID”是对位结构的简化描述。
-
+代码中的计数器实际上是按天递增，因此同一个Key在一天内不能超过2^32 - 1。
 ### RedisIdWorker.java
 
 ```java
