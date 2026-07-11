@@ -97,7 +97,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 				evening: "Good Evening,",
 			},
 			// 主页横幅主标题字体大小
-			titleSize: "3.8rem",
+			titleSize: "3.2rem",
 			// 主页横幅副标题
 			subtitle: [
 				"Nice to meet you!",
