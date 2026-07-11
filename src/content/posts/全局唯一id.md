@@ -40,7 +40,7 @@ comments: true
 
 ### ID的组成
 
-64位`long`类型表示：
+64位long类型表示：
 
 - 符号位：1 bit，固定为0
 - 时间戳：31 bit，以秒为单位，大约可以使用68年
@@ -69,7 +69,7 @@ icr:order:2026:07:10
 
 这样可以让不同业务使用不同计数器，并且能够按天统计订单量。
 
-Redis的`INCR`命令是原子操作，多线程并发执行时不会生成重复序号。
+Redis的INCR命令是原子操作，多线程并发执行时不会生成重复序号。
 
 代码中的计数器实际上是按天递增，因此同一个Key在一天内不能超过`2^32 - 1`。PPT中“每秒支持`2^32`个ID”是对位结构的简化描述。
 
@@ -246,8 +246,8 @@ public Result seckillVoucher(Long voucherId) {
 
 常见实现：
 
-- `synchronized`
-- `Lock`
+- synchronized
+- Lock
 - 数据库排他锁
 
 优点是实现简单、安全性直观；缺点是线程需要等待，并发性能相对较低。
@@ -272,7 +272,7 @@ WHERE voucher_id = ?
   AND version = ?;
 ```
 
-秒杀库存只需要保证库存不小于0，可以使用`stock > 0`作为更新条件：
+秒杀库存只需要保证库存不小于0，可以使用stock > 0作为更新条件：
 
 ### VoucherOrderServiceImpl.java
 ```java
@@ -384,7 +384,6 @@ UNIQUE (user_id, voucher_id);
 
 ## 集群环境中的锁失效问题
 
-PPT图片中启动了两个服务实例：
 
 集群环境下，请求可能分别进入JVM1和JVM2。每个JVM都有自己的锁监视器，因此两个线程都可能获得各自JVM中的锁。
 
