@@ -823,6 +823,16 @@ const hasMultipleImages =
 							backgroundWallpaper.common.homeText.titleSize || "3.8rem",
 					}}
 				>
+					{backgroundWallpaper.common.homeText.greeting?.enable && (
+						<span
+							class="overlay-time-greeting"
+							data-time-greeting
+							data-morning={backgroundWallpaper.common.homeText.greeting.morning || "Good Morning,"}
+							data-noon={backgroundWallpaper.common.homeText.greeting.noon || "Good Noon,"}
+							data-afternoon={backgroundWallpaper.common.homeText.greeting.afternoon || "Good Afternoon,"}
+							data-evening={backgroundWallpaper.common.homeText.greeting.evening || "Good Evening,"}
+						></span>
+					)}
 					{backgroundWallpaper.common.homeText.title}
 				</h1>
 			)}
@@ -868,6 +878,31 @@ const hasMultipleImages =
 		</button>
 	</section>
 )}
+
+	<script>
+		function updateOverlayTimeGreeting() {
+			const hour = new Date().getHours();
+			const greetingElements = document.querySelectorAll<HTMLElement>(
+				"[data-time-greeting]",
+			);
+
+			greetingElements.forEach((element) => {
+				let greeting = element.dataset.evening;
+				if (hour >= 6 && hour < 11) {
+					greeting = element.dataset.morning;
+				} else if (hour >= 11 && hour < 13) {
+					greeting = element.dataset.noon;
+				} else if (hour >= 13 && hour < 18) {
+					greeting = element.dataset.afternoon;
+				}
+				element.textContent = greeting ? `${greeting} ` : "";
+		});
+	}
+
+	updateOverlayTimeGreeting();
+	document.addEventListener("astro:page-load", updateOverlayTimeGreeting);
+	document.addEventListener("swup:contentReplaced", updateOverlayTimeGreeting);
+</script>
 
 <!-- Main content -->
 <div class={`absolute w-full z-30 pointer-events-none ${mobileNonHomeBannerClass ? 'mobile-main-no-banner' : ''} ${!(isBannerMode && isBackgroundEnabled) ? 'no-banner-layout' : ''}`} style={isFullscreenMode ? 'top: 0;' : `top: ${finalMainPanelTop}`}>
@@ -1000,4 +1035,3 @@ const hasMultipleImages =
   }
 
 </style>
-

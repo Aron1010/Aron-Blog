@@ -18,6 +18,13 @@ export type BackgroundWallpaperConfig = {
 			enable: boolean; // 是否在首页显示自定义文字（全局开关）
 			switchable?: boolean; // 是否允许用户通过控制面板切换首页壁纸标题显示（包括全屏透明模式）
 			title?: string; // 主标题
+			greeting?: {
+				enable: boolean; // 是否根据访问者本地时间在标题前显示问候语
+				morning?: string; // 早上问候语（06:00-10:59）
+				noon?: string; // 中午问候语（11:00-12:59）
+				afternoon?: string; // 下午问候语（13:00-17:59）
+				evening?: string; // 晚上问候语（18:00-次日05:59）
+			};
 			subtitle?: string | string[]; // 副标题，支持单个字符串或字符串数组
 			titleSize?: string; // 主标题字体大小，如 "3.5rem"
 			subtitleSize?: string; // 副标题字体大小，如 "1.5rem"

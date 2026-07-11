@@ -84,6 +84,18 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			switchable: true,
 			// 主页横幅主标题
 			title: "I'm Aron",
+			// 根据访问者设备的本地时间，在主标题前显示问候语
+			greeting: {
+				enable: true,
+				// 06:00-10:59
+				morning: "Good Morning,",
+				// 11:00-12:59
+				noon: "Good Noon,",
+				// 13:00-17:59
+				afternoon: "Good Afternoon,",
+				// 18:00-次日05:59
+				evening: "Good Evening,",
+			},
 			// 主页横幅主标题字体大小
 			titleSize: "3.8rem",
 			// 主页横幅副标题
