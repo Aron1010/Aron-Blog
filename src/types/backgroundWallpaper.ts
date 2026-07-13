@@ -10,7 +10,7 @@ export type BackgroundWallpaperConfig = {
 				mobile?: string | string[];
 				playerUrl?: string | string[]; // 背景视频播放地址，支持单个视频路径或数组（多视频列表循环）
 		  }; // 支持单个图片、图片数组或分别设置桌面端和移动端图片
-	// 横幅壁纸和全屏壁纸共享配置
+	// 横幅、全屏和全屏透明壁纸共享配置
 	common?: {
 		dimOpacity?: number; // 横幅文字遮罩暗度，0-1之间，值越大越暗，默认0.15
 		playerMode?: "order" | "random"; // 多视频播放模式："order" 顺序循环（默认），"random" 随机切换
@@ -60,7 +60,7 @@ export type BackgroundWallpaperConfig = {
 			height?: string; // 渐变高度，默认 "30vh"
 			switchable?: boolean; // 是否允许用户通过控制面板切换渐变过渡
 		};
-		// 壁纸轮播配置，横幅壁纸和全屏壁纸共享
+		// 壁纸轮播配置，横幅、全屏和全屏透明壁纸共享
 		carousel?: {
 			enable: boolean; // 是否启用壁纸轮播
 			interval?: number; // 轮播间隔时间，单位毫秒

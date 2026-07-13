@@ -56,7 +56,7 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		{
 			// 图标文件路径
-			src: "/favicon/IMG_4428.jpg",
+			src: "/favicon/a.jpg",
 			// 可选，指定主题 'light' | 'dark'
 			// theme: "light",
 			// 可选，图标大小
@@ -74,7 +74,7 @@ export const siteConfig: SiteConfig = {
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
 		logo: {
 			type: "image",
-			value: "assets/images/IMG_4428.jpg",
+			value: "assets/images/IMG_4524.jpg",
 			alt: "Aron",
 		},
 		// 导航栏标题

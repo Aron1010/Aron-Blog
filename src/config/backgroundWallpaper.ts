@@ -81,7 +81,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			"https://www.image2url.com/r2/default/videos/1781765166391-f2ba6648-1597-40e0-9f0a-6768ae39e574.mp4",
 		],
 	},
-	// 横幅壁纸和全屏壁纸共享配置
+	// 横幅、全屏和全屏透明壁纸共享配置
 	common: {
 		
 		// 壁纸遮罩暗度，让横幅文字显示更清晰，0-1之间，值越大越暗
@@ -164,7 +164,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 是否允许用户通过控制面板切换渐变过渡
 			switchable: true,
 		},
-		// 壁纸轮播配置，横幅壁纸和全屏壁纸共享，仅在配置多张图片时生效
+		// 壁纸轮播配置，横幅、全屏和全屏透明壁纸共享，仅在配置多张图片时生效
 		carousel: {
 			// 是否启用壁纸轮播；关闭时保持每次刷新随机显示一张
 			enable: false,

@@ -408,7 +408,6 @@ const hasMultipleImages =
             var container = document.getElementById('banner-images-container');
             if (!container) return;
 
-            var WALLPAPER_BANNER = 'banner';
             var interval = parseInt(container.dataset.carouselInterval || '5000', 10);
             var switchable = container.dataset.carouselSwitchable === 'true';
             var defaultEnabled = container.dataset.carouselEnabled === 'true';
@@ -441,9 +440,9 @@ const hasMultipleImages =
                 return stored === 'true';
             }
 
-            function isBannerWallpaperMode() {
+            function isCarouselWallpaperMode() {
                 var mode = document.documentElement.getAttribute('data-wallpaper-mode');
-                return mode === WALLPAPER_BANNER || mode === 'fullscreen';
+                return mode === 'banner' || mode === 'fullscreen' || mode === 'overlay';
             }
 
             // 获取当前设备可见的 slide-item
@@ -529,7 +528,7 @@ const hasMultipleImages =
             function startAutoPlay() {
                 stopAutoPlay();
                 if (!isCarouselEnabled()) return;
-                if (!isBannerWallpaperMode()) return;
+                if (!isCarouselWallpaperMode()) return;
 
                 appState.isPlaying = true;
                 appState.autoPlayTimer = setTimeout(function advance() {
@@ -551,7 +550,7 @@ const hasMultipleImages =
 
             // 键盘控制
             document.addEventListener('keydown', function(e) {
-                if (!isBannerWallpaperMode() || !isCarouselEnabled()) return;
+                if (!isCarouselWallpaperMode() || !isCarouselEnabled()) return;
                 if (e.key === 'ArrowRight') {
                     var slides = getVisibleSlides();
                     changeToSlide(getCurrentIndex(slides) + 1);
@@ -583,7 +582,7 @@ const hasMultipleImages =
                 e.detail && e.detail.enabled ? startAutoPlay() : stopAutoPlay();
             });
             window.addEventListener('wallpaperModeChange', function(e) {
-                if (e.detail && (e.detail.mode === 'banner' || e.detail.mode === 'fullscreen')) {
+                if (e.detail && (e.detail.mode === 'banner' || e.detail.mode === 'fullscreen' || e.detail.mode === 'overlay')) {
                     if (isCarouselEnabled()) startAutoPlay();
                 } else {
                     stopAutoPlay();
@@ -601,7 +600,7 @@ const hasMultipleImages =
             }
 
             // 启动
-            if (isCarouselEnabled() && isBannerWallpaperMode()) {
+            if (isCarouselEnabled() && isCarouselWallpaperMode()) {
                 startAutoPlay();
             }
         })();
