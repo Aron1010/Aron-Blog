@@ -6,7 +6,7 @@ published: 2026-07-11
 # 文章简介
 description: Redis全局唯一ID
 # 文章标签
-tags: [Redis，Redis全局唯一id，悲观锁乐观锁，单环境加锁]
+tags: [Redis,Redis全局唯一id,悲观锁乐观锁,单环境加锁]
 # 文章分类
 category: Redis
 # 是否为草稿
