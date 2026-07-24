@@ -1,0 +1,138 @@
+---
+interface Props {
+	namespace: string;
+	apiUrl?: string;
+	timezone?: string;
+}
+
+const {
+	namespace,
+	apiUrl = "https://api.counterapi.dev/v1",
+	timezone = "Asia/Shanghai",
+} = Astro.props;
+---
+
+<div
+	class="m-0.5 mb-1 flex flex-wrap items-center justify-center gap-x-2 gap-y-1"
+	data-visit-counter
+	aria-label="网站访问量"
+>
+	<span>
+		今日访问量
+		<strong class="ml-1 font-semibold text-(--primary)" data-visit-today>--</strong>
+	</span>
+	<span class="text-(--primary)" aria-hidden="true">|</span>
+	<span>
+		本月访问量
+		<strong class="ml-1 font-semibold text-(--primary)" data-visit-month>--</strong>
+	</span>
+	<span class="text-(--primary)" aria-hidden="true">|</span>
+	<span>
+		总访问量
+		<strong class="ml-1 font-semibold text-(--primary)" data-visit-total>--</strong>
+	</span>
+</div>
+
+<script
+	is:inline
+	define:vars={{
+		counterNamespace: namespace,
+		counterApiUrl: apiUrl,
+		counterTimezone: timezone,
+	}}
+>
+	(() => {
+		const counter = document.querySelector("[data-visit-counter]");
+		if (!(counter instanceof HTMLElement) || counter.dataset.initialized === "true") {
+			return;
+		}
+		counter.dataset.initialized = "true";
+
+		// 本地开发和预览不写入线上统计。
+		if (["localhost", "127.0.0.1", "::1"].includes(window.location.hostname)) {
+			counter.title = "本地预览不计入访问量";
+			return;
+		}
+
+		const dateParts = Object.fromEntries(
+			new Intl.DateTimeFormat("en-CA", {
+				timeZone: counterTimezone,
+				year: "numeric",
+				month: "2-digit",
+				day: "2-digit",
+			})
+				.formatToParts(new Date())
+				.filter((part) => part.type !== "literal")
+				.map((part) => [part.type, part.value]),
+		);
+
+		const day = `${dateParts.year}-${dateParts.month}-${dateParts.day}`;
+		const month = `${dateParts.year}-${dateParts.month}`;
+		const names = [`visits-${day}`, `visits-${month}`, "visits-total"];
+		const sessionKey = `visit-counter:${counterNamespace}:${day}`;
+		let alreadyCounted = false;
+
+		try {
+			alreadyCounted = sessionStorage.getItem(sessionKey) === "1";
+		} catch {
+			// 部分隐私模式会禁用 sessionStorage，此时仍允许统计服务工作。
+		}
+
+		const apiBase = counterApiUrl.replace(/\/+$/, "");
+		const numberFormatter = new Intl.NumberFormat("zh-CN");
+
+		const readCount = (payload) => {
+			const candidates = [
+				payload?.value,
+				payload?.count,
+				payload?.data?.value,
+				payload?.data?.count,
+				payload?.data,
+			];
+			const count = candidates
+				.map((value) => Number(value))
+				.find((value) => Number.isFinite(value));
+			if (count === undefined) throw new Error("统计服务返回了未知数据格式");
+			return count;
+		};
+
+		const fetchCount = async (name) => {
+			const controller = new AbortController();
+			const timer = window.setTimeout(() => controller.abort(), 8000);
+			const action = alreadyCounted ? "" : "/up";
+			const endpoint = `${apiBase}/${encodeURIComponent(counterNamespace)}/${encodeURIComponent(name)}${action}`;
+
+			try {
+				const response = await fetch(endpoint, {
+					cache: "no-store",
+					signal: controller.signal,
+				});
+				if (!response.ok) throw new Error(`统计服务请求失败：${response.status}`);
+				return readCount(await response.json());
+			} finally {
+				window.clearTimeout(timer);
+			}
+		};
+
+		Promise.all(names.map(fetchCount))
+			.then(([today, thisMonth, total]) => {
+				counter.querySelector("[data-visit-today]").textContent =
+					numberFormatter.format(today);
+				counter.querySelector("[data-visit-month]").textContent =
+					numberFormatter.format(thisMonth);
+				counter.querySelector("[data-visit-total]").textContent =
+					numberFormatter.format(total);
+
+				if (!alreadyCounted) {
+					try {
+						sessionStorage.setItem(sessionKey, "1");
+					} catch {
+						// 忽略浏览器禁用存储的情况。
+					}
+				}
+			})
+			.catch(() => {
+				counter.title = "访问量统计服务暂时不可用";
+			});
+	})();
+</script>

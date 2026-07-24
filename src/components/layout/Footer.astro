@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { footerConfig, profileConfig } from "@/config";
-import { url } from "@/utils/url-utils";
+import VisitCounter from "./VisitCounter.astro";
 
 const currentYear = new Date().getFullYear();
 
@@ -38,6 +38,15 @@ if (footerConfig.enable) {
     <div class="mb-2">
       {customFooterHtml && <div set:html={customFooterHtml} />}
     </div>
+    {
+      footerConfig.visitCounter?.enable && (
+        <VisitCounter
+          namespace={footerConfig.visitCounter.namespace}
+          apiUrl={footerConfig.visitCounter.apiUrl}
+          timezone={footerConfig.visitCounter.timezone}
+        />
+      )
+    }
     <div class="m-0.5 flex gap-2 justify-center flex-wrap">
       &copy; <span id="copyright-year">{currentYear}</span>
       {profileConfig.name}. All Rights Reserved.

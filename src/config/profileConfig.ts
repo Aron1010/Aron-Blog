@@ -36,7 +36,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "QQ",
 			icon: "fa7-brands:qq",
-			url: "tencent://message/?uin=970558943&Site=&Menu=yes",
+			url: "/assets/images/qq.jpeg",
 			showName: true,
 		},
 	],
