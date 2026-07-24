@@ -25,7 +25,19 @@ export const profileConfig: ProfileConfig = {
 			name: "GitHub",
 			icon: "fa7-brands:github",
 			url: "https://github.com/aron1010",
-			showName: false,
+			showName: true,
+		},
+		{
+			name: "邮箱",
+			icon: "fa7-solid:envelope",
+			url: "mailto:aronblake1010@gmail.com",
+			showName: true,
+		},
+		{
+			name: "QQ",
+			icon: "fa7-brands:qq",
+			url: "tencent://message/?uin=970558943&Site=&Menu=yes",
+			showName: true,
 		},
 	],
 };
